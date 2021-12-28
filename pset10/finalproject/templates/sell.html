@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <label for="drugname">Choose the medicine:</label>
+            <input list="drugnames" name="drugname" id="drugname" autocomplete="off" placeholder="Select ...">
+            <datalist id="drugnames">
+            {% for drug in drugs %}
+                {% if drug["total"] != 0 %}
+                    <option value="{{ drug['type'] }} / {{ drug['drugname'] }} / {{ drug['dose'] }} / {{ drug['expiration'] }}"></option>
+                {% endif %}
+            {% endfor %}>
+            </datalist>
+            <input class="form-control" name="quantity" placeholder="Amount ..." type="number" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="service">and/or name your service:</label>
+            <input class="form-control" name="service" placeholder="Write ..." type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="man" placeholder="Name of person" type="text" required>
+            <input class="form-control" name="problem" placeholder="Problem ..." type="text" required>
+            <select class="form-control" name="typeinjury" placeholder="type of treatment ..." type="text" required>
+                <option value="Medicine or Service">Medicine or Service</option>
+                <option value="First Aid Case (FAC)">First Aid Case (FAC)</option>
+                <option value="Medical Treatment Case (MTC)">Medical Treatment Case (MTC)</option>
+                <option value="Medical Evacuation">Medical Evacuation</option>
+                <option value="Disability">Disability</option>
+                <option value="Fatality">Fatality</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}
