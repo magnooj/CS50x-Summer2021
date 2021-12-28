@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="on" autofocus class="form-control" name="drugname" placeholder="Enter drug name" type="text" required>
+            <input autocomplete="on" class="form-control" name="type" placeholder="Type of drug..." type="text" required>
+            <input autocomplete="on" class="form-control" name="dose" placeholder="Dosage ..." type="text" required>
+            <input autocomplete="on" class="form-control" name="compnay" placeholder="Manufacturer ..." type="text">
+            <input autocomplete="on" class="form-control" name="quantity" placeholder="Amount of drug ..." type="number" min="1" required>
+            Date of expire: <input class="form-control" name="expiration" placeholder="Date of expire ..." type="date" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Add to pharmacy</button>
+    </form>
+{% endblock %}
